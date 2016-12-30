@@ -72,8 +72,6 @@ function setup() {
    myNameP.position((width/2) - 158.25  ,  (height/2) - 62.5 );
    myNameP.style('font-size', '30px');
    myNameP.html('Made by: Christos Soteriou');
-
-   createCardTable( );
 }
 
 function draw() {
@@ -225,7 +223,7 @@ function startF( ) {
          nameP  .hide( );
          myNameP.hide( );
 
-         // startT = millis( );
+         createCardTable( );
 
          start = true;
 
