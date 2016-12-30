@@ -218,6 +218,12 @@ function touchEnded( ) {
    touch = false;
 }
 
+function touch4Start( ) {
+   if(touch && !start) {
+      startF( );
+   }
+}
+
 function keyPressed( ) {
    if (!start) {
       start = true;
