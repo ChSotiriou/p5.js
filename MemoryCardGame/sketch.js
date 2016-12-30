@@ -1,3 +1,8 @@
+// Memorize the Cards
+// Made by: Christos Soteriou
+
+// Find The Pairs
+
 var cards = [];
 var touch = false;
 var completed = false;

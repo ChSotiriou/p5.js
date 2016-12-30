@@ -1,3 +1,8 @@
+// Memorize the Cards
+// Made by: Christos Soteriou
+
+// Find The Pairs
+
 function Card(x, y, c) {
    this.pos = createVector(x, y);
    this.color = c;
