@@ -14,6 +14,7 @@ var toTurn = false;
 
 var cTstart = 0;
 var cTtouch = 0;
+var cTrestart = 0;
 
 var attempts = 0;
 var attemptsP;
@@ -90,8 +91,8 @@ function draw() {
       attemptsP .show( );
 
       if(!allTurned( )) {
-         seconds = floor((millis( ) - startT) / 1000) - minutes*60;
-         minutes = floor(floor((millis( ) - startT) / 1000) / 60);
+         seconds = floor((millis( ) - cTstart) / 1000) - minutes*60;
+         minutes = floor(floor((millis( ) - cTstart) / 1000) / 60);
       }
       if (seconds < 10) {
          timeP.html('Time: ' + minutes + ':0' + seconds);
@@ -209,7 +210,7 @@ function touchEnded ( ) {
 }
 
 function keyPressed( ) {
-   if(!start) {
+   if(!start && millis( ) - cTrestart > 200) {
       startF( );
    }
 }
@@ -220,7 +221,7 @@ function startF( ) {
          nameP  .hide( );
          myNameP.hide( );
 
-         startT = millis( );
+         // startT = millis( );
 
          start = true;
 
@@ -237,12 +238,13 @@ function allTurned( ) {
 }
 
 function touch4Start( ) {
-   if(touch && !start) {
+   if(touch && !start && millis( ) - cTrestart > 200) {
       startF( );
    }
 }
 
 function restart( ) {
+
    start = false;
 
    btnRestart.hide( );
@@ -257,5 +259,10 @@ function restart( ) {
    aTurned = 0;
    attempts = 0;
 
+   cTrestart = millis( );
+
+   touch = false;
+
    createCardTable( );
+
 }
