@@ -222,7 +222,7 @@ function touchEnded( ) {
 
 function touch4Start( ) {
    if(touch && !start) {
-      startF( );
+      start = true;
    }
 }
 
