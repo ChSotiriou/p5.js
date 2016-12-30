@@ -7,7 +7,7 @@ function Card(x, y, c) {
    this.pos = createVector(x, y);
    this.color = c;
    this.turned = false;
-   this.r = 100;
+   this.r = 50;
 
    this.render = function( ) {
       this.getFill( );
