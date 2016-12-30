@@ -31,13 +31,17 @@ var myNameP;
 
 var btnRestart;
 
+var rectPos;
+
 function setup() {
    createCanvas(849.5, 525);
    colorMode(RGB);
    rectMode(CENTER);
 
+   rectPos = createVector(width/2, 25);
+
    btnRestart = createButton('Restart');
-   btnRestart.position(width/2 - 36.5, 19);
+   btnRestart.position(rectPos.x - 36.5, rectPos.y - 6);
    btnRestart.mousePressed(restart);
    btnRestart.style('font-size', '25');
    btnRestart.style('background-color', 'transparent');
@@ -83,7 +87,7 @@ function draw() {
       noFill( );
       stroke(0);
       strokeWeight(3);
-      rect(width/2, 25, 100, 35);
+      rect(rectPos.x, rectPos.y, 100, 35);
       pop( );
 
       btnRestart.show( );
