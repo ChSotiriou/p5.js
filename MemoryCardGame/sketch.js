@@ -71,6 +71,8 @@ function setup() {
 function draw() {
    background(204);
 
+   touch4Start( );
+
    if(start) {
 
       push( );
