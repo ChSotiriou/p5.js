@@ -32,41 +32,41 @@ var myNameP;
 var btnRestart;
 
 function setup() {
-   createCanvas(1699, 1050);
+   createCanvas(849.5, 525);
    colorMode(RGB);
    rectMode(CENTER);
 
    btnRestart = createButton('Restart');
-   btnRestart.position(width/2 - 78, 30);
+   btnRestart.position(width/2 - 36.5, 19);
    btnRestart.mousePressed(restart);
-   btnRestart.style('font-size', '50');
+   btnRestart.style('font-size', '25');
    btnRestart.style('background-color', 'transparent');
    btnRestart.style('border', '0');
    btnRestart.style('outline', 'none');
    btnRestart.hide( );
 
    timeP = createElement('h1');
-   timeP.style('font-size', '50px');
-   timeP.position(55, -2);
+   timeP.style('font-size', '25px');
+   timeP.position(27.5, 3);
 
    attemptsP = createElement('h1');
-   attemptsP.style('font-size', '50px');
-   attemptsP.position(width - 250, -2);
+   attemptsP.style('font-size', '25px');
+   attemptsP.position(width - 120, 3);
 
    startP =  createElement( 'h1' );
    nameP =   createElement( 'h1' );
    myNameP = createElement( 'h1' );
 
-   startP.position((width/2) - 246.5  ,  (height/2) - 25 );
-   startP.style('font-size', '60px');
+   startP.position((width/2) - 123.25  ,  (height/2) - 12.5 );
+   startP.style('font-size', '30px');
    startP.html('Press Any Key to Start');
 
-   nameP.position((width/2) - 216.5  ,  (height/2) - 225 );
-   nameP.style('font-size', '60px');
+   nameP.position((width/2) - 108.25  ,  (height/2) - 112.5 );
+   nameP.style('font-size', '30px');
    nameP.html('Memorize the Cards');
 
-   myNameP.position((width/2) - 316.5  ,  (height/2) - 125 );
-   myNameP.style('font-size', '60px');
+   myNameP.position((width/2) - 158.25  ,  (height/2) - 62.5 );
+   myNameP.style('font-size', '30px');
    myNameP.html('Made by: Christos Soteriou');
 
    createCardTable( );
@@ -83,7 +83,7 @@ function draw() {
       noFill( );
       stroke(0);
       strokeWeight(3);
-      rect(width/2, 50, 200, 70);
+      rect(width/2, 25, 100, 35);
       pop( );
 
       btnRestart.show( );
@@ -142,8 +142,8 @@ function createCardTable( ) {
    for(var i = 0; i < 14; i++) {
       hasColor[i] = false;
    }
-   var cX = 150;
-   var cY = 200;
+   var cX = 75;
+   var cY = 100;
 
    for(var i = 0; i < 28; i++) {
       var color = getColor(colors);
@@ -154,10 +154,10 @@ function createCardTable( ) {
          colors[color] = true;
       }
       cards[i] = new Card(cX, cY, color);
-      cX += 200 + (100/3);
+      cX += 116 + 2*(1/3);
       if((i+1)%7 == 0) {
-         cX  = 150;
-         cY += 200 + (100/3);
+         cX  = 75;
+         cY += 116 + 2*(1/3);
       }
    }
    completed = true;
