@@ -227,6 +227,12 @@ function allTurned( ) {
    return true;
 }
 
+function touch4Start( ) {
+   if(touch && !start) {
+      startF( );
+   }
+}
+
 function restart( ) {
    start = false;
 
