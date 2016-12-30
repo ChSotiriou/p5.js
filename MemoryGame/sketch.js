@@ -69,6 +69,8 @@ function setup() {
 function draw() {
    background(80);
 
+   touch4Start( );
+
    if(start) {
       startP.hide( );
       nameP.hide( );
