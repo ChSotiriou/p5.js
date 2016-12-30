@@ -12,6 +12,9 @@ var turnedCards = [];
 var aTurned = 0;
 var toTurn = false;
 
+var cTstart = 0;
+var cTtouch = 0;
+
 var attempts = 0;
 var attemptsP;
 
@@ -73,7 +76,7 @@ function draw() {
 
    touch4Start( );
 
-   if(start) {
+   if(start && millis( ) - cTstart > 200) {
 
       push( );
       noFill( );
@@ -81,6 +84,10 @@ function draw() {
       strokeWeight(3);
       rect(width/2, 50, 200, 70);
       pop( );
+
+      btnRestart.show( );
+      timeP     .show( );
+      attemptsP .show( );
 
       if(!allTurned( )) {
          seconds = floor((millis( ) - startT) / 1000) - minutes*60;
@@ -191,7 +198,10 @@ function Turn( ) {
 }
 
 function touchStarted( ) {
-   touch = true;
+   if(millis( ) - cTtouch > 500) {
+      touch = true;
+      cTtouch = millis( );
+   }
 }
 
 function touchEnded ( ) {
@@ -206,18 +216,15 @@ function keyPressed( ) {
 
 function startF( ) {
 
-         btnRestart.show( );
-
          startP .hide( );
          nameP  .hide( );
          myNameP.hide( );
 
-         timeP    .show( );
-         attemptsP.show( );
-
          startT = millis( );
 
          start = true;
+
+         cTstart = millis( );
 }
 
 function allTurned( ) {
