@@ -1,10 +1,19 @@
 var a;
 var xoff;
 var st = 0;
+var inc = 0.01;
+var stInc = 0.0005;
+
+var speed;
+var hidden = false;
 
 function setup( ) {
-   createCanvas(600, 400);
+   createCanvas(1000, 800);
    colorMode(HSB);
+
+   speed = createSlider(0, 1, 0, 0.0001);
+   speed.position(10, 10);
+
    a = 0;
 }
 
@@ -12,11 +21,14 @@ function draw( ) {
    background(20);
    strokeWeight(4);
    translate(width/2, height);
+
+   stInc = speed.value( );
+
    xoff = st;
 
-   branch(125);
+   branch(270);
 
-   st += 0.001;
+   st += stInc;
 }
 
 function branch(len) {
@@ -34,6 +46,17 @@ function branch(len) {
       rotate(-a);
       branch(len * 0.67);
       pop( );
-      xoff += 0.01;
+      xoff += inc;
+   }
+}
+
+function keyPressed( ) {
+   if(hidden) {
+      hidden = false;
+      speed.show( );
+   }
+   else {
+      hidden = true;
+      speed.hide( );
    }
 }
