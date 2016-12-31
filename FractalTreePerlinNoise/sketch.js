@@ -11,7 +11,7 @@ function setup( ) {
    createCanvas(1000, 800);
    colorMode(HSB);
 
-   speed = createSlider(0, 1, 0, 0.0001);
+   speed = createSlider(0, 0.1, 0, 0.0001);
    speed.position(10, 10);
 
    a = 0;
