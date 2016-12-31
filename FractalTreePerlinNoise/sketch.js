@@ -26,7 +26,7 @@ function draw( ) {
 
    xoff = st;
 
-   branch(270);
+   branch(height/2.96);
 
    st += stInc;
 }
