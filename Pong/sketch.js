@@ -14,12 +14,12 @@ function setup( ) {
    ball = new Ball(1);
 
    scoreP1P = createElement('h1');
-   scoreP1P.position(width/2 - 50, -30);
+   scoreP1P.position(width/2 - 70, -30);
    scoreP1P.style('font-size', '50pt');
    scoreP1P.style('color', '#FFF');
 
    scoreP2P = createElement('h1');
-   scoreP2P.position(width/2 + 40, -30);
+   scoreP2P.position(width/2 + 60, -30);
    scoreP2P.style('font-size', '50pt');
    scoreP2P.style('color', '#FFF');
 }

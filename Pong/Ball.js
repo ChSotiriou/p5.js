@@ -9,6 +9,7 @@ function Ball(n) {
    }
 
    this.update = function( ) {
+      this.speed *= 1.001;
       this.vel.setMag(this.speed);
       this.pos.add(this.vel);
    }
