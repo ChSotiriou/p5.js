@@ -18,7 +18,7 @@ function setup() {
 }
 
 function draw() {
-  background(20, 51);
+  background(20);
   strokeWeight(4);
   translate(width / 2, height);
 
