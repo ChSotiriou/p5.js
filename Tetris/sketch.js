@@ -1,4 +1,4 @@
-const scl = 100;
+const scl = 40;
 const numOfShapes = 7;
 const mpmStart = 1000;
 
@@ -14,12 +14,13 @@ var lastBlock;
 var blocks = [];
 
 function setup() {
-  createCanvas(1200, 1700);
+  createCanvas(480, 680);
   cols = floor(width / scl);
   rows = floor(height / scl);
 
   pElement = createP('Score: ');
-  pElement.style('font-size', 90);
+  pElement.style('font-size', 36);
+  pElement.position(25 + width, -20);
 
   lastBlock = new Block();
   blocks.push(lastBlock);
