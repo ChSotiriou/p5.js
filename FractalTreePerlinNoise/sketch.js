@@ -38,12 +38,12 @@ function branch(len) {
   if (len > 4) {
     a = noise(xoff) * PI / 2;
     push();
-    rotate(60);
+    rotate(radians(60));
     branch(len * 0.67);
     pop();
 
     push();
-    rotate(-60);
+    rotate(radians(-60));
     branch(len * 0.67);
     pop();
     xoff += inc;
