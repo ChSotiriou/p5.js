@@ -155,10 +155,10 @@ function Block() {
   }
 
   this.moveVertical = function () {
+    landed = this.landedOnBlock(blocks) || atBottom();
     if (millis() - cT > millisPerMove) {
       cT = millis();
       pos.y++;
-      landed = this.landedOnBlock(blocks) || atBottom();
     }
   }
 
