@@ -5,9 +5,8 @@ var inc = 0.01;
 var stInc = 0.0005;
 var cT = 0;
 
-var speed;
+var input;
 var hidden = false;
-var p;
 
 var canvas;
 
@@ -16,21 +15,11 @@ function setup() {
   canvas.position(displayWidth / 2 - width / 2, displayHeight / 2 - height / 2);
   colorMode(HSB);
 
-  speed = createSlider(0, 180, 0, 1);
-  speed.position(10, 10);
+  input = createInput('60');
+  input.changed(make);
+  input.position(10, 10);
 
-  p = createP();
-  p.position(10, 20);
-
-  a = 0;
   make();
-}
-
-function draw() {
-  if (millis() - cT > 500) {
-    cT = millis();
-    if (a != speed.value()) make();
-  }
 }
 
 function make() {
@@ -38,8 +27,7 @@ function make() {
   strokeWeight(4);
   translate(width / 2, height);
 
-  a = speed.value();
-  p.html(a);
+  a = input.value();
 
   branch(height / 2.96);
 }
@@ -62,16 +50,13 @@ function branch(len) {
 }
 
 function keyPressed() {
-  if (key == ' ') make();
-  else {
+  if (key == 'h' || key == 'H') {
     if (hidden) {
       hidden = false;
-      speed.show();
-      p.show();
+      input.show();
     } else {
       hidden = true;
-      speed.hide();
-      p.hide();
+      input.hide();
     }
   }
 }
