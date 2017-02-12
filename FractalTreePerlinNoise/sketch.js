@@ -99,15 +99,25 @@ function keyPressed() {
     if (hidden) {
       hidden = false;
       input.show();
+
       sliderR.show();
       sliderG.show();
       sliderB.show();
+
+      sliderRB.show();
+      sliderGB.show();
+      sliderBB.show();
     } else {
       hidden = true;
       input.hide();
+
       sliderR.hide();
       sliderG.hide();
       sliderB.hide();
+
+      sliderRB.hide();
+      sliderGB.hide();
+      sliderBB.hide();
     }
   }
 }
