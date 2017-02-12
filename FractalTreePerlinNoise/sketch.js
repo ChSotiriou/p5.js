@@ -7,6 +7,9 @@ var cT = 0;
 
 var input;
 var colorT;
+var colorB;
+
+var eClass;
 
 var randomR;
 
@@ -18,6 +21,8 @@ function setup() {
   canvas = createCanvas(1000, 800);
   canvas.position(displayWidth / 2 - width / 2, displayHeight / 2 - height / 2);
   colorMode(RGB);
+
+  eClass = document.getElementsByClassName("input");
 
   input = document.getElementById("angle");
   input.value = '60';
@@ -67,15 +72,15 @@ function keyPressed() {
   if (key == 'h' || key == 'H') {
     if (hidden) {
       hidden = false;
-      input.style.visibility = "visible";
-      colorT.style.visibility = "visible";
-      colorB.style.visibility = "visible";
+      for (var i = 0; i < eClass.length; i++) {
+        eClass[i].hidden = false;
+      }
 
     } else {
       hidden = true;
-      input.style.visibility = "hidden";
-      colorT.style.visibility = "hidden";
-      colorB.style.visibility = "hidden";
+      for (var i = 0; i < eClass.length; i++) {
+        eClass[i].hidden = true;
+      }
     }
   }
 }
