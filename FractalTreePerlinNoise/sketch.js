@@ -8,8 +8,11 @@ var cT = 0;
 var input;
 var colorT;
 var colorB;
+var strokeW;
+var lSlider;
 
 var eClass;
+var texts;
 
 var randomR;
 
@@ -23,10 +26,17 @@ function setup() {
   colorMode(RGB);
 
   eClass = document.getElementsByClassName("input");
+  texts = document.getElementsByClassName("text");
 
   input = document.getElementById("angle");
   input.value = '60';
   input.onchange = make;
+
+  strokeW = document.getElementById("strokeW");
+  strokeW.onchange = make;
+
+  lSlider = document.getElementById("minS");
+  lSlider.onchange = make;
 
   colorT = document.getElementById("colT");
   colorT.onchange = make;
@@ -44,7 +54,11 @@ function make() {
   document.body.style.backgroundColor = colorB.value;
   stroke(colorT.value);
 
-  strokeWeight(4);
+  for (var i = 0; i < texts.length; i++) {
+    texts[i].style.color = colorT.value;
+  }
+
+  strokeWeight(strokeW.value);
   translate(width / 2, height);
 
   a = input.value;
@@ -55,7 +69,7 @@ function make() {
 function branch(len) {
   line(0, 0, 0, -len);
   translate(0, -len);
-  if (len > 4) {
+  if (len > lSlider.value) {
     push();
     rotate(radians(a));
     branch(len * 0.67);
