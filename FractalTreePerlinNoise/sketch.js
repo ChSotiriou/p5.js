@@ -22,7 +22,7 @@ var canvas;
 
 function setup() {
   canvas = createCanvas(1000, 800);
-  canvas.position(displayWidth / 2 - width / 2 + 50, displayHeight / 2 - height / 2);
+  canvas.position(displayWidth / 2 - width / 2, displayHeight / 2 - height / 2);
   colorMode(RGB);
 
   eClass = document.getElementsByClassName("input");
