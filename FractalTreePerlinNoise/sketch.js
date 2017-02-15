@@ -54,8 +54,8 @@ function make() {
   document.body.style.backgroundColor = colorB.value;
   stroke(colorT.value);
 
-  for (var j = 0; j < texts.length; j++) {
-    texts[j].style.color = colorT.value;
+  for (var i = 0; i < texts.length; i++) {
+    texts[i].style.color = colorT.value;
   }
 
   strokeWeight(strokeW.value);
