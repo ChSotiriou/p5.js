@@ -88,6 +88,7 @@ function draw() {
       for (var i = 0; i < cards.length; i++) {
         cards[i].turned = false;
       }
+      cTstart = millis();
     }
     push();
     noFill();
