@@ -83,7 +83,7 @@ function draw() {
   touch4Start();
 
   if (start && millis() - cTstart > 200) {
-    if (pulseS && millis() - cP > 2000) {
+    if (pulseS && millis() - cP > 5000) {
       pulseS = false;
       for (var i = 0; i < cards.length; i++) {
         cards[i].turned = false;
