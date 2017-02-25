@@ -1,4 +1,4 @@
-const scl = 100; // 40
+const scl = 40;
 const numOfShapes = 1;
 const mpmStart = 1000;
 
@@ -25,10 +25,9 @@ var start = false;
 var translationY = 0;
 
 function setup() {
-  // createCanvas(480, 680);
   createCanvas(
-    1000,
-    1400
+    480,
+    680
   );
   cols = floor(width / scl);
   rows = floor(height / scl);
@@ -67,14 +66,12 @@ function draw() {
 
     rowCompleted = removeRow();
     if (rowCompleted.b) {
-      console.log(rowCompleted);
 
       for (var i = 0; i < cols; i++) {
         grid[rowCompleted.index[0]][i] = false;
       }
 
       rowScore += 10;
-      console.log("WORKS");
     }
 
     score = blocks.length - 1 + rowScore;
