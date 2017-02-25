@@ -2,8 +2,15 @@ function Shape4() {
   // Shapes
   {
     var angle0 = {
-      verts: [
+      blocks: [
         // -- -- -- --
+        new p5.Vector(0, 0),
+        new p5.Vector(scl, 0),
+        new p5.Vector(2 * scl, 0),
+        new p5.Vector(3 * scl, 0)
+      ],
+
+      verts: [
         new p5.Vector(0, 0),
         new p5.Vector(4 * scl, 0),
         new p5.Vector(4 * scl, scl),
@@ -14,11 +21,18 @@ function Shape4() {
     };
 
     var angle90 = {
+      blocks: [
+        // --
+        // --
+        // --
+        // --
+        new p5.Vector(0, 0),
+        new p5.Vector(0, scl),
+        new p5.Vector(0, 2 * scl),
+        new p5.Vector(0, 3 * scl)
+      ],
+
       verts: [
-        // --
-        // --
-        // --
-        // --
         new p5.Vector(0, 0),
         new p5.Vector(scl, 0),
         new p5.Vector(scl, 4 * scl),

@@ -1,5 +1,5 @@
 const scl = 40;
-const numOfShapes = 1;
+const numOfShapes = 7;
 const mpmStart = 1000;
 
 var score = 0;

@@ -1,9 +1,16 @@
 function Shape2() {
   // Shapes
   var shape = {
+    blocks: [
+      // -- --
+      // -- --
+      new p5.Vector(0, 0),
+      new p5.Vector(scl, 0),
+      new p5.Vector(0, scl),
+      new p5.Vector(scl, scl)
+    ],
+
     verts: [
-      // -- --
-      // -- --
       new p5.Vector(0, 0),
       new p5.Vector(2 * scl, 0),
       new p5.Vector(2 * scl, 2 * scl),
