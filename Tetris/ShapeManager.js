@@ -47,6 +47,10 @@ function ShapeManager() {
     return shape.getSize(t, a);
   }
 
+  this.getRectPos = function (pos) {
+    return shape.getRectPos(pos);
+  }
+
   this.getAngle = function () {
     return shape.getAngle();
   }

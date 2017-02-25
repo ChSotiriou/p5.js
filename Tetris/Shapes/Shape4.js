@@ -1,29 +1,35 @@
 function Shape4() {
   // Shapes
   {
-    var angle0Vert = [
-      // -- -- -- --
-      new p5.Vector(0, 0),
-      new p5.Vector(4 * scl, 0),
-      new p5.Vector(4 * scl, scl),
-      new p5.Vector(0, scl),
-      new p5.Vector(4 * scl, scl)
-    ];
+    var angle0 = {
+      verts: [
+        // -- -- -- --
+        new p5.Vector(0, 0),
+        new p5.Vector(4 * scl, 0),
+        new p5.Vector(4 * scl, scl),
+        new p5.Vector(0, scl),
+      ],
 
-    var angle90Vert = [
-      // --
-      // --
-      // --
-      // --
-      new p5.Vector(0, 0),
-      new p5.Vector(scl, 0),
-      new p5.Vector(scl, 4 * scl),
-      new p5.Vector(0, 4 * scl),
-      new p5.Vector(scl, 4 * scl)
-    ];
+      size: new p5.Vector(4 * scl, scl)
+    };
+
+    var angle90 = {
+      verts: [
+        // --
+        // --
+        // --
+        // --
+        new p5.Vector(0, 0),
+        new p5.Vector(scl, 0),
+        new p5.Vector(scl, 4 * scl),
+        new p5.Vector(0, 4 * scl)
+      ],
+
+      size: new p5.Vector(scl, 4 * scl)
+    };
   }
 
-  var gShape = new GShape(angle0Vert, angle90Vert, angle0Vert, angle90Vert);
+  var gShape = new GShape(angle0, angle90, angle0, angle90);
 
   this.render = function (pos) {
     gShape.render(pos);
@@ -47,5 +53,9 @@ function Shape4() {
 
   this.getSize = function (t, a) {
     return gShape.getSize(t, a);
+  }
+
+  this.getRectPos = function (pos) {
+    return gShape.getRectPos(pos);
   }
 }

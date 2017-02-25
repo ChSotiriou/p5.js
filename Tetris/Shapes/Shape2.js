@@ -1,16 +1,19 @@
 function Shape2() {
   // Shapes
-  var angleVert = [
-    // -- --
-    // -- --
-    new p5.Vector(0, 0),
-    new p5.Vector(2 * scl, 0),
-    new p5.Vector(2 * scl, 2 * scl),
-    new p5.Vector(0, 2 * scl),
-    new p5.Vector(2 * scl, 2 * scl)
-  ];
+  var shape = {
+    verts: [
+      // -- --
+      // -- --
+      new p5.Vector(0, 0),
+      new p5.Vector(2 * scl, 0),
+      new p5.Vector(2 * scl, 2 * scl),
+      new p5.Vector(0, 2 * scl)
+    ],
 
-  var gShape = new GShape(angleVert, angleVert, angleVert, angleVert);
+    size: new p5.Vector(2 * scl, 2 * scl)
+  };
+
+  var gShape = new GShape(shape, shape, shape, shape);
 
   this.render = function (pos) {
     gShape.render(pos);
@@ -34,5 +37,9 @@ function Shape2() {
 
   this.getSize = function (t, a) {
     return gShape.getSize(t, a);
+  }
+
+  this.getRectPos = function (pos) {
+    return gShape.getRectPos(pos);
   }
 }

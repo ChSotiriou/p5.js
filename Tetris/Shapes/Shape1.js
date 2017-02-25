@@ -1,58 +1,70 @@
 function Shape1() {
   // Shapes
   {
-    var angle0Vert = [
-      // --
-      // -- -- --
-      new p5.Vector(0, 0),
-      new p5.Vector(scl, 0),
-      new p5.Vector(scl, scl),
-      new p5.Vector(3 * scl, scl),
-      new p5.Vector(3 * scl, 2 * scl),
-      new p5.Vector(0, 2 * scl),
-      new p5.Vector(3 * scl, 2 * scl)
-    ];
+    var angle0 = {
+      verts: [
+        // --
+        // -- -- --
+        new p5.Vector(0, 0),
+        new p5.Vector(scl, 0),
+        new p5.Vector(scl, scl),
+        new p5.Vector(3 * scl, scl),
+        new p5.Vector(3 * scl, 2 * scl),
+        new p5.Vector(0, 2 * scl)
+      ],
 
-    var angle90Vert = [
-      // -- --
-      // --
-      // --
-      new p5.Vector(0, 0),
-      new p5.Vector(2 * scl, 0),
-      new p5.Vector(2 * scl, scl),
-      new p5.Vector(scl, scl),
-      new p5.Vector(scl, 3 * scl),
-      new p5.Vector(0, 3 * scl),
-      new p5.Vector(2 * scl, 3 * scl)
-    ];
+      size: new p5.Vector(3 * scl, 2 * scl)
+    };
 
-    var angle180Vert = [
-      // -- -- --
-      //       --
-      new p5.Vector(0, 0),
-      new p5.Vector(3 * scl, 0),
-      new p5.Vector(3 * scl, 2 * scl),
-      new p5.Vector(2 * scl, 2 * scl),
-      new p5.Vector(2 * scl, scl),
-      new p5.Vector(0, scl),
-      new p5.Vector(3 * scl, 2 * scl)
-    ];
+    var angle90 = {
+      verts: [
+        // -- --
+        // --
+        // --
+        new p5.Vector(0, 0),
+        new p5.Vector(2 * scl, 0),
+        new p5.Vector(2 * scl, scl),
+        new p5.Vector(scl, scl),
+        new p5.Vector(scl, 3 * scl),
+        new p5.Vector(0, 3 * scl)
+      ],
 
-    var angle270Vert = [
-      //    --
-      //    --
-      // -- --
-      new p5.Vector(scl, 0),
-      new p5.Vector(2 * scl, 0),
-      new p5.Vector(2 * scl, 3 * scl),
-      new p5.Vector(0, 3 * scl),
-      new p5.Vector(0, 2 * scl),
-      new p5.Vector(scl, 2 * scl),
-      new p5.Vector(2 * scl, 3 * scl)
-    ];
+      size: new p5.Vector(2 * scl, 3 * scl)
+    };
+
+    var angle180 = {
+      verts: [
+        // -- -- --
+        //       --
+        new p5.Vector(0, 0),
+        new p5.Vector(3 * scl, 0),
+        new p5.Vector(3 * scl, 2 * scl),
+        new p5.Vector(2 * scl, 2 * scl),
+        new p5.Vector(2 * scl, scl),
+        new p5.Vector(0, scl)
+      ],
+
+      size: new p5.Vector(3 * scl, 2 * scl)
+    };
+
+    var angle270 = {
+      verts: [
+        //    --
+        //    --
+        // -- --
+        new p5.Vector(scl, 0),
+        new p5.Vector(2 * scl, 0),
+        new p5.Vector(2 * scl, 3 * scl),
+        new p5.Vector(0, 3 * scl),
+        new p5.Vector(0, 2 * scl),
+        new p5.Vector(scl, 2 * scl)
+      ],
+
+      size: new p5.Vector(2 * scl, 3 * scl)
+    };
   }
 
-  var gShape = new GShape(angle0Vert, angle90Vert, angle180Vert, angle270Vert);
+  var gShape = new GShape(angle0, angle90, angle180, angle270);
 
   this.render = function (pos) {
     gShape.render(pos);
@@ -76,5 +88,9 @@ function Shape1() {
 
   this.getSize = function (t, a) {
     return gShape.getSize(t, a);
+  }
+
+  this.getRectPos = function (pos) {
+    return gShape.getRectPos(pos);
   }
 }

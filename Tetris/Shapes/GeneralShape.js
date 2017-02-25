@@ -8,7 +8,6 @@ function GShape(_a0, _a90, _a180, _a270) {
   var a180 = _a180;
   var a270 = _a270;
 
-
   this.render = function (pos) {
     var a;
     if (angle < 0) a = 360 + (angle % 360);
@@ -53,23 +52,23 @@ function GShape(_a0, _a90, _a180, _a270) {
     }
     switch (a) {
       case 0:
-        return a0;
+        return a0.verts;
         break;
 
       case 360:
-        return a0;
+        return a0.verts;
         break;
 
       case 90:
-        return a90;
+        return a90.verts;
         break;
 
       case 180:
-        return a180;
+        return a180.verts;
         break;
 
       case 270:
-        return a270;
+        return a270.verts;
         break;
 
     }
@@ -92,10 +91,10 @@ function GShape(_a0, _a90, _a180, _a270) {
     var v1 = new p5.Vector();
     if (a == null) v1 = shapeSize;
     else {
-      if (a == 0 || a == 360) v1 = a0[a0.length - 1];
-      else if (a == 90) v1 = a90[a90.length - 1];
-      else if (a == 180) v1 = a180[a180.length - 1];
-      else if (a == -90 || a == 270) v1 = a270[a270.length - 1];
+      if (a == 0 || a == 360) v1 = a0.size;
+      else if (a == 90) v1 = a90.size;
+      else if (a == 180) v1 = a180.size;
+      else if (a == -90 || a == 270) v1 = a270.size;
       else {
         console.log('ERROR: ' + a);
       }
@@ -104,34 +103,69 @@ function GShape(_a0, _a90, _a180, _a270) {
     else if (t == 'h') return v1.y;
   }
 
-  var generateShape = function (vert) {
-    shapeSize = vert[vert.length - 1];
-    beginShape(); {
-      for (var i = 0; i < vert.length - 1; i++) {
-        vertex(vert[i].x, vert[i].y);
-      }
-      noStroke();
+  this.getRectPos = function (pos) {
+    var a = this.getAngle();
+    var rects = [];
+    var blsArr;
+
+    switch (a) {
+      case 0:
+        blsArr = a0.blocks;
+        break;
+
+      case 360:
+        blsArr = a0.blocks;
+        break;
+
+      case 90:
+        blsArr = a90.blocks;
+        break;
+
+      case 180:
+        blsArr = a180.blocks;
+        break;
+
+      case 270:
+        blsArr = a270.blocks;
+        break;
     }
-    endShape(CLOSE);
+
+    for (var i = 0; i < blsArr.length; i++) {
+      r = new p5.Vector(blsArr[i].x + pos.x * scl, blsArr[i].y + pos.y * scl)
+      rects.push(r);
+    }
+    return rects;
+  }
+
+  var generateShape = function (vert) {
+    shapeSize = vert.size;
+    noStroke();
+    for (var i = 0; i < vert.blocks.length; i++) {
+      rect(vert.blocks[i].x, vert.blocks[i].y, scl, scl);
+    }
   }
 
   var getHorizontalEdges = function (vert, pos) {
     var edges = [];
-    for (var i = 0; i < vert.length - 1; i++) {
-      for (var j = 0; j < vert.length - 1; j++) {
+    for (var i = 0; i < vert.length; i++) {
+      for (var j = 0; j < vert.length; j++) {
 
         if (vert[i] != vert[j]) {
 
           if (vert[i].y == vert[j].y) {
 
             if (!foundDuplicate(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl, edges)) {
-
-              edge = [
-                new p5.Vector(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl),
-                new p5.Vector(vert[j].x + pos.x * scl, vert[j].y + pos.y * scl),
-              ]
+              if (vert[i].x < vert[j].x)
+                edge = [
+                  new p5.Vector(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl),
+                  new p5.Vector(vert[j].x + pos.x * scl, vert[j].y + pos.y * scl),
+                ]
+              else
+                edge = [
+                  new p5.Vector(vert[j].x + pos.x * scl, vert[j].y + pos.y * scl),
+                  new p5.Vector(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl),
+                ]
               edges.push(edge);
-
             }
           }
         }
@@ -142,19 +176,24 @@ function GShape(_a0, _a90, _a180, _a270) {
 
   var getVerticalEdges = function (vert, pos) {
     var edges = [];
-    for (var i = 0; i < vert.length - 1; i++) {
-      for (var j = 0; j < vert.length - 1; j++) {
+    for (var i = 0; i < vert.length; i++) {
+      for (var j = 0; j < vert.length; j++) {
 
         if (vert[i] != vert[j]) {
 
           if (vert[i].x == vert[j].x) {
 
             if (!foundDuplicate(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl, edges)) {
-
-              edge = [
-                new p5.Vector(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl),
-                new p5.Vector(vert[j].x + pos.x * scl, vert[j].y + pos.y * scl),
-              ]
+              if (vert[i].y < vert[j].y)
+                edge = [
+                  new p5.Vector(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl),
+                  new p5.Vector(vert[j].x + pos.x * scl, vert[j].y + pos.y * scl),
+                ]
+              else
+                edge = [
+                  new p5.Vector(vert[j].x + pos.x * scl, vert[j].y + pos.y * scl),
+                  new p5.Vector(vert[i].x + pos.x * scl, vert[i].y + pos.y * scl),
+                ]
               edges.push(edge);
 
             }
@@ -173,5 +212,17 @@ function GShape(_a0, _a90, _a180, _a270) {
       }
     }
     return false;
+  }
+
+  var getLowestEdge = function (vertEdges) {
+    winner = vertEdges[0];
+    for (var i = 1; i < vertEdges.length; i++) {
+      if (vertEdges[i][0].x < winner[0].x) winner = vertEdges[i];
+    }
+    return winner;
+  }
+
+  function includes(arr, obj) {
+    return (arr.indexOf(obj) != -1);
   }
 }

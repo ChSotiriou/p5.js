@@ -65,6 +65,15 @@ function Block() {
     return false;
   }
 
+  var calculateSpace = function () {
+    bls = shape.getRectPos(pos);
+    for (var i = 0; i < bls.length; i++) {
+      var x = bls[i].x / scl;
+      var y = bls[i].y / scl;
+      grid[y][x] = true;
+    }
+  }
+
   var checkIfTouchingVerticle = function (wanted, otherEdges) {
 
     var wantedLowestY = min(wanted[0].y, wanted[1].y);
@@ -156,6 +165,7 @@ function Block() {
 
   this.moveVertical = function () {
     landed = this.landedOnBlock(blocks) || atBottom();
+    if (landed) calculateSpace();
     if (millis() - cT > millisPerMove) {
       cT = millis();
       pos.y++;
