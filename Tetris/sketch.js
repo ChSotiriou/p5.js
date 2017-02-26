@@ -152,9 +152,6 @@ function removeRow() {
   }
   for (var j = 0; j < rows; j++) {
     var row = grid[j];
-    // for (var i = 0; i < cols; i++) {
-    //   row[i] = grid[i][j];
-    // }
     if (row.allValuesTrue()) {
       res.b = true;
       res.index.push(j);
