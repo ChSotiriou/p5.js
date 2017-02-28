@@ -62,7 +62,6 @@ function setup() {
 
 function draw() {
 
-
   if (start) {
     startP.hide();
     nameP.hide();
@@ -72,12 +71,14 @@ function draw() {
 
     ship.show();
     ship.move(dir);
+
     roundP.html('Round: ' + roundC);
     roundP.position(width + 30, 0);
     scoreP.html('Score: ' + score);
     scoreP.position(width + 30, 50);
     livesP.html('Lives: ' + lives);
     livesP.position(width + 30, 100);
+
     for (var i = 0; i < bullets.length; i++) {
 
       bullets[i].show();
@@ -93,13 +94,11 @@ function draw() {
       }
 
       for (var j = 0; j < enemies.length; j++) {
-        for (var j = 0; j < enemies.length; j++) {
-          if (bullets[i].hit(enemies[j], 'e')) {
-            bullets[i].toDelete = true;
-            enemies.splice(j, 1);
-            enemiesKilled++;
-            score++;
-          }
+        if (bullets[i].hit(enemies[j], 'e')) {
+          bullets[i].toDelete = true;
+          enemies.splice(j, 1);
+          enemiesKilled++;
+          score++;
         }
       }
     }
@@ -198,12 +197,8 @@ function generateEnemies(num) {
 }
 
 function randomShoot() {
-  rpmVal = -1 * map(roundC, 1, 25, -3, -1.5);
-  if (floor(random(0, pow(10, rpmVal)) < 1)) {
-    return true;
-  } else {
-    return false;
-  }
+  rpmVal = map(roundC, 1, 25, 3, 1.5);
+  return floor(random(0, pow(10, rpmVal)) < 1);
 }
 
 function keyPressed() {
