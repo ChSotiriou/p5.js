@@ -16,7 +16,7 @@ function Enemy(x, y, round) {
     fill(255, 0, 100);
     noStroke();
     ellipse(this.pos.x, this.pos.y, this.r * 2, this.r * 2);
-  };
+  }
 
   this.edge = function () {
     if (this.pos.x > width - this.r || this.pos.x < 0 + this.r) {
@@ -24,16 +24,16 @@ function Enemy(x, y, round) {
     } else {
       return false;
     }
-  };
+  }
 
   this.moveE = function () {
     this.pos.x += this.dir * this.vel;
-  };
+  }
 
   this.down = function () {
     this.pos.y += this.downNum;
     this.dir *= -1;
-  };
+  }
 
   this.checkOut = function () {
     if (this.pos.y > height - this.r) {
@@ -41,7 +41,7 @@ function Enemy(x, y, round) {
     } else {
       return false;
     }
-  };
+  }
 
   this.hit = function (ship) {
     this.d = dist(this.pos.x, this.pos.y, ship.pos.x, ship.pos.y);
@@ -52,5 +52,5 @@ function Enemy(x, y, round) {
     } else {
       return false;
     }
-  };
-};
+  }
+}

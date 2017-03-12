@@ -17,13 +17,13 @@ function Bullet(pos_, dirY, ty) {
     } else {
       this.toDelete = false;
     }
-  };
+  }
 
   this.update = function () {
     for (var i = 0; i < this.vel; i++) {
       this.pos.y += this.dir;
     }
-  };
+  }
 
   this.show = function () {
     if (this.type === 'e') {
@@ -33,53 +33,29 @@ function Bullet(pos_, dirY, ty) {
     }
     noStroke();
     ellipse(this.pos.x, this.pos.y, this.r * 2);
-  };
+  }
 
   this.hit = function (obj, type) {
     if (type === 'e') {
       this.d = dist(this.pos.x, this.pos.y, obj.pos.x, obj.pos.y);
       var hitArea = obj.r + this.r;
-      if (this.d <= hitArea) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.d <= hitArea;
+
     } else if (type === 's') {
-      if (this.pointTriangleIntersection(obj.pos, obj.posB, obj.posC, this.pos)) {
-        return true;
-      } else {
-        return false;
-      }
+
+      return this.rect_point_intersection(obj.hitbox_XY, obj.hitbox_WH, this.pos);
     }
-  };
+  }
 
-  this.pointTriangleIntersection = function (pA, pB, pC, p) {
-    var aAB = (pA.y - pB.y) / (pA.x - pB.x);
-    var AeqAB = -1 * aAB;
-    var BeqAB = 1;
-    var CeqAB = (aAB * pA.x) + (-1 * pA.y);
+  this.rect_point_intersection = function (xy, wh, p) {
+    pA = createVector(xy.x, xy.y);
+    pB = createVector(xy.x + wh.x, xy.y);
+    pC = createVector(xy.x + wh.x, xy.y + wh.y);
+    pD = createVector(xy.x, xy.y + wh.y);
 
-    var aAC = (pA.y - pC.y) / (pA.x - pC.x);
-    var AeqAC = -1 * aAC;
-    var BeqAC = 1;
-    var CeqAC = (aAC * pA.x) + (-1 * pA.y);
-
-    var d = dist(p.x, p.y, pA.x, pA.y);
-    var d2 = dist(p.x, p.y, pB.x, pB.y);
-    var d3 = dist(p.x, p.y, pC.x, pC.y);
-
-    var b1 = this.distLinePoint(AeqAB, BeqAB, CeqAB, p) <= this.r;
-    var b2 = this.distLinePoint(AeqAC, BeqAC, CeqAC, p) <= this.r;
-    var b3 = d <= this.r || d2 <= this.r || d3 <= this.r;
-    var b4 = p.y > pA.y && p.y < height && p.x > pB.x && p.x < pC.x;
-
-    var b5 = b1 || b2 || b3;
-
-    return b4 || b5;
-  };
-
-  this.distLinePoint = function (An, Bn, Cn, p) {
-    var distR_l = abs((An * p.x) + (Bn * p.y) + Cn) / sqrt(pow(An, 2) + pow(Bn, 2));
-    return distR_l;
-  };
-};
+    return (
+      p.x >= pA.x && p.x <= pB.x &&
+      p.y >= pA.y && p.y <= pD.y
+    );
+  }
+}

@@ -85,14 +85,6 @@ function draw() {
       bullets[i].update();
       bullets[i].dOut();
 
-      for (var j = 0; j < enemiesBullets.length; j++) {
-        if (bullets[i].hit(enemiesBullets[j])) {
-          bullets[i].toDelete = true;
-          enemiesBullets[j].toDelete = true;
-        }
-
-      }
-
       for (var j = 0; j < enemies.length; j++) {
         if (bullets[i].hit(enemies[j], 'e')) {
           bullets[i].toDelete = true;
